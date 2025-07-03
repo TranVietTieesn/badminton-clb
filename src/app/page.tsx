@@ -27,7 +27,7 @@ export default function HomePage() {
     {
       name: 'Mr. Thịnh',
       role: 'Club President',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b647?w=400&h=400&fit=crop&face',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&face',
       bio: 'Founded the club in 2024 with a vision of creating an inclusive badminton community.'
     },
     {
@@ -39,7 +39,7 @@ export default function HomePage() {
     {
       name: 'Mr. Hẹn',
       role: 'Events Coordinator',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&face',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&face',
       bio: 'Organizes our tournaments and social events that bring the community together.'
     }
   ]
