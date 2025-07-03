@@ -118,5 +118,3 @@ Open [http://localhost:3002](http://localhost:3002) to view the website.
 - **Float Animation**: Gentle movement for background elements
 
 ---
-
-Built with ❤️ for the badminton community using modern web standards and 2025 design trends. 
