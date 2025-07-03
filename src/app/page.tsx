@@ -97,7 +97,7 @@ export default function HomePage() {
             
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Join our vibrant badminton community where passion meets excellence. 
-              Whether you're just starting or already a champion, we have your court ready.
+              Whether you&apos;re just starting or already a champion, we have your court ready.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
@@ -179,7 +179,7 @@ export default function HomePage() {
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     From humble beginnings with 8 founding members to a thriving 
-                    community of 20+ passionate players, we've built something special together.
+                    community of 20+ passionate players, we&apos;ve built something special together.
                   </p>
                 </div>
               </div>
@@ -275,7 +275,7 @@ export default function HomePage() {
               Get In Touch
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Ready to join our badminton family? We'd love to hear from you!
+              Ready to join our badminton family? We&apos;d love to hear from you!
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-navy-500 to-coral-500 mx-auto rounded-full mt-6"></div>
           </div>
