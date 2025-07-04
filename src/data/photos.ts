@@ -78,7 +78,7 @@ export const clubPhotos: Photo[] = [
   // Tournament Photos
   {
     id: 'tourn_001',
-    src: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=600&fit=crop',
+    src: 'images/tournament/476429567_1877628312767537_4942515097612906741_n.jpg',
     alt: 'Giải đấu nội bộ CLB',
     title: 'Giải đấu tháng 11',
     date: '2024-11-20',
@@ -87,7 +87,7 @@ export const clubPhotos: Photo[] = [
   },
   {
     id: 'tourn_002',
-    src: 'https://images.unsplash.com/photo-1626003441462-87ba6faf1c34?w=800&h=600&fit=crop',
+    src: '/images/tournament/476795714_600128126198459_6943664557928451318_n.jpg',
     alt: 'Trận chung kết gay cấn',
     title: 'Chung kết kịch tính',
     date: '2024-11-22',
