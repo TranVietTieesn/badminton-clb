@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import { useTheme } from './ThemeProvider'
 import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi'
 
@@ -9,6 +10,8 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
   
   // Safely get theme context
   let theme = 'light'
@@ -35,12 +38,42 @@ export default function Navigation() {
   }, [])
 
   const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#team', label: 'Team' },
-    { href: '#highlights', label: 'Highlights' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/#home', label: 'Trang chủ', isSection: true },
+    { href: '/#about', label: 'Giới thiệu', isSection: true },
+    { href: '/#team', label: 'Đội ngũ', isSection: true },
+    { href: '/album', label: 'Album', isSection: false },
+    { href: '/#highlights', label: 'Điểm nổi bật', isSection: true },
+    { href: '/#contact', label: 'Liên hệ', isSection: true },
   ]
+
+  const handleNavClick = (item: typeof navItems[0], e: React.MouseEvent) => {
+    setIsMobileMenuOpen(false)
+    
+    if (item.isSection) {
+      // Handle homepage sections
+      e.preventDefault()
+      const sectionId = item.href.split('#')[1]
+      
+      if (pathname === '/') {
+        // Already on homepage, just scroll to section
+        const element = document.getElementById(sectionId)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      } else {
+        // Navigate to homepage first, then scroll to section
+        router.push('/')
+        // Wait for navigation to complete, then scroll
+        setTimeout(() => {
+          const element = document.getElementById(sectionId)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }
+        }, 100)
+      }
+    }
+    // For non-section links (like /album), let the default Link behavior handle it
+  }
 
   // Don't render theme-dependent elements until mounted
   if (!mounted) {
@@ -76,7 +109,7 @@ export default function Navigation() {
               <div className="flex items-center space-x-3">
                 {/* CTA Button */}
                 <button className="hidden sm:block btn-primary micro-bounce">
-                  Join Club
+                  Tham gia CLB
                 </button>
               </div>
             </div>
@@ -111,6 +144,7 @@ export default function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={(e) => handleNavClick(item, e)}
                   className="px-4 py-2 rounded-xl text-sm font-450 text-gray-600 dark:text-gray-300 hover:text-navy-600 dark:hover:text-white hover:bg-white/50 dark:hover:bg-gray-800/50 transition-all duration-200 micro-hover focus-ring"
                 >
                   {item.label}
@@ -124,7 +158,7 @@ export default function Navigation() {
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-xl hover:bg-white/50 dark:hover:bg-gray-800/50 transition-all duration-200 micro-hover focus-ring"
-                aria-label="Toggle dark mode"
+                aria-label="Chuyển đổi chế độ tối"
               >
                 {theme === 'light' ? (
                   <FiMoon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
@@ -135,14 +169,14 @@ export default function Navigation() {
 
               {/* CTA Button */}
               <button className="hidden sm:block btn-primary micro-bounce">
-                Join Club
+                Tham gia CLB
               </button>
 
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="md:hidden p-2 rounded-xl hover:bg-white/50 dark:hover:bg-gray-800/50 transition-all duration-200 micro-hover focus-ring"
-                aria-label="Toggle mobile menu"
+                aria-label="Chuyển đổi menu di động"
               >
                 {isMobileMenuOpen ? (
                   <FiX className="w-5 h-5 text-gray-600 dark:text-gray-300" />
@@ -161,14 +195,14 @@ export default function Navigation() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => handleNavClick(item, e)}
                     className="px-4 py-3 rounded-xl text-sm font-450 text-gray-600 dark:text-gray-300 hover:text-navy-600 dark:hover:text-white hover:bg-white/50 dark:hover:bg-gray-800/50 transition-all duration-200 focus-ring"
                   >
                     {item.label}
                   </Link>
                 ))}
                 <button className="btn-primary w-full mt-4">
-                  Join Club
+                  Tham gia CLB
                 </button>
               </div>
             </div>

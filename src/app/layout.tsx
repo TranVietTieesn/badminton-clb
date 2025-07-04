@@ -5,10 +5,10 @@ import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
-  title: 'Badminton Club - Play • Connect • Grow',
-  description: 'Join our vibrant badminton community. Whether you\'re a beginner or a pro, we\'ve got a place for you.',
-  keywords: 'badminton, club, sports, community, tournament, coaching',
-  authors: [{ name: 'Badminton Club' }],
+  title: 'Câu lạc bộ Cầu lông - Chơi • Kết nối • Phát triển',
+  description: 'Tham gia cộng đồng cầu lông sôi động của chúng tôi. Dù bạn là người mới bắt đầu hay chuyên nghiệp, chúng tôi đều có chỗ cho bạn.',
+  keywords: 'cầu lông, câu lạc bộ, thể thao, cộng đồng, giải đấu, huấn luyện',
+  authors: [{ name: 'Bernice Club' }],
 }
 
 export const viewport: Viewport = {
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="vi" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

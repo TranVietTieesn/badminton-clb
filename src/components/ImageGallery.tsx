@@ -2,119 +2,238 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { FiX, FiChevronLeft, FiChevronRight, FiCalendar, FiCamera } from 'react-icons/fi'
 
-const ImageGallery = () => {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null)
+export interface Photo {
+  id: string
+  src: string
+  alt: string
+  title: string
+  date: string
+  category: string
+  description?: string
+}
 
-  const galleryImages = [
-    {
-      id: 1,
-      src: 'https://images.unsplash.com/photo-1544547863-c9618ba8e31b?w=800&h=600&fit=crop',
-      alt: 'Badminton court action shot',
-      title: 'Intense Match Moments'
-    },
-    {
-      id: 2,
-      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
-      alt: 'Team celebration',
-      title: 'Victory Celebrations'
-    },
-    {
-      id: 3,
-      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
-      alt: 'Training session',
-      title: 'Practice Makes Perfect'
-    },
-    {
-      id: 4,
-      src: 'https://images.unsplash.com/photo-1544547863-c9618ba8e31b?w=800&h=600&fit=crop',
-      alt: 'Social gathering',
-      title: 'Community Events'
-    },
-    {
-      id: 5,
-      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop',
-      alt: 'Coaching session',
-      title: 'Learning Together'
-    },
-    {
-      id: 6,
-      src: 'https://images.unsplash.com/photo-1544547863-c9618ba8e31b?w=800&h=600&fit=crop',
-      alt: 'Tournament day',
-      title: 'Tournament Champions'
-    }
+interface ImageGalleryProps {
+  photos: Photo[]
+  categories?: { key: string; label: string }[]
+  showFilters?: boolean
+  columns?: 2 | 3 | 4
+  className?: string
+}
+
+export default function ImageGallery({ 
+  photos, 
+  categories = [], 
+  showFilters = true,
+  columns = 3,
+  className = ''
+}: ImageGalleryProps) {
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  // Generate categories from photos if not provided
+  const defaultCategories = [
+    { key: 'all', label: 'Tất cả' },
+    ...Array.from(new Set(photos.map(p => p.category))).map(cat => ({
+      key: cat,
+      label: cat.charAt(0).toUpperCase() + cat.slice(1)
+    }))
   ]
 
+  const finalCategories = categories.length > 0 ? categories : defaultCategories
+
+  const filteredPhotos = selectedCategory === 'all' 
+    ? photos 
+    : photos.filter(photo => photo.category === selectedCategory)
+
+  const openModal = (photo: Photo) => {
+    setSelectedPhoto(photo)
+    setCurrentIndex(filteredPhotos.findIndex(p => p.id === photo.id))
+  }
+
+  const closeModal = () => {
+    setSelectedPhoto(null)
+    setCurrentIndex(0)
+  }
+
+  const nextPhoto = () => {
+    const nextIndex = (currentIndex + 1) % filteredPhotos.length
+    setCurrentIndex(nextIndex)
+    setSelectedPhoto(filteredPhotos[nextIndex])
+  }
+
+  const prevPhoto = () => {
+    const prevIndex = currentIndex === 0 ? filteredPhotos.length - 1 : currentIndex - 1
+    setCurrentIndex(prevIndex)
+    setSelectedPhoto(filteredPhotos[prevIndex])
+  }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('vi-VN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  }
+
+  const gridCols = {
+    2: 'grid-cols-1 md:grid-cols-2',
+    3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+    4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+  }
+
   return (
-    <div className="space-y-12">
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {galleryImages.map((image, index) => (
+    <div className={className}>
+      {/* Category Filter */}
+      {showFilters && finalCategories.length > 1 && (
+        <div className="mb-8">
+          <div className="glass rounded-2xl p-4">
+            <div className="flex flex-wrap gap-2 justify-center">
+              {finalCategories.map((category) => {
+                const count = category.key === 'all' 
+                  ? photos.length 
+                  : photos.filter(p => p.category === category.key).length
+                
+                return (
+                  <button
+                    key={category.key}
+                    onClick={() => setSelectedCategory(category.key)}
+                    className={`px-4 py-2 rounded-lg text-sm font-450 transition-all duration-200 micro-hover ${
+                      selectedCategory === category.key
+                        ? 'bg-gradient-to-r from-navy-500 to-coral-500 text-white shadow-premium'
+                        : 'bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-300 hover:bg-white/70 dark:hover:bg-gray-700/50'
+                    }`}
+                  >
+                    {category.label}
+                    <span className="ml-1 text-xs opacity-75">({count})</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Photo Grid */}
+      <div className={`grid ${gridCols[columns]} gap-6`}>
+        {filteredPhotos.map((photo, index) => (
           <div
-            key={image.id}
-            className="neuro-card group cursor-pointer neuro-hover overflow-hidden"
-            onClick={() => setSelectedImage(index)}
+            key={photo.id}
+            className="glass-card group cursor-pointer overflow-hidden micro-hover"
+            onClick={() => openModal(photo)}
           >
-            <div className="relative h-64">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src={image.src}
-                alt={image.alt}
+                src={photo.src}
+                alt={photo.alt}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-2xl"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-              <div className="absolute bottom-6 left-6 right-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-xl font-semibold font-poppins">{image.title}</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-3 left-3 right-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="font-550 text-sm mb-1 truncate">{photo.title}</h3>
+                <div className="flex items-center text-xs opacity-90">
+                  <FiCalendar className="w-3 h-3 mr-1" />
+                  {formatDate(photo.date)}
+                </div>
+              </div>
+              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                  <FiCamera className="w-4 h-4 text-white" />
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal for expanded view */}
-      {selectedImage !== null && (
-        <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-4xl max-h-[90vh] w-full">
-            <div className="neuro-card overflow-hidden">
-              <Image
-                src={galleryImages[selectedImage].src}
-                alt={galleryImages[selectedImage].alt}
-                width={800}
-                height={600}
-                className="w-full h-auto max-h-[70vh] object-contain"
-              />
-              <div className="p-8 bg-gradient-to-t from-soft-cream to-white">
-                <h3 className="text-3xl font-bold text-gradient-cute font-poppins">{galleryImages[selectedImage].title}</h3>
-                <p className="text-gray-600 text-lg font-quicksand mt-2">Experience the energy and excitement of our badminton community!</p>
-              </div>
-            </div>
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                setSelectedImage(null)
-              }}
-              className="absolute top-6 right-6 neuro-icon neuro-hover text-gray-600"
-            >
-              ✕
-            </button>
+      {/* Empty State */}
+      {filteredPhotos.length === 0 && (
+        <div className="text-center py-12">
+          <div className="w-16 h-16 bg-gradient-to-br from-navy-500 to-coral-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <FiCamera className="w-8 h-8 text-white" />
           </div>
+          <h3 className="text-xl font-550 text-navy-700 dark:text-white mb-2">
+            Chưa có ảnh nào
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300 text-sm">
+            Chúng tôi sẽ sớm cập nhật thêm nhiều ảnh thú vị!
+          </p>
         </div>
       )}
 
-      {/* Call to Action */}
-      <div className="neuro-card text-center">
-        <p className="text-gray-600 mb-8 text-lg font-quicksand">
-          Want to be featured in our gallery? Join us for the next event!
-        </p>
-        <button className="cute-btn text-lg font-quicksand">
-          Join Our Next Event
-        </button>
-      </div>
+      {/* Photo Modal */}
+      {selectedPhoto && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
+          <div className="relative w-full h-full flex items-center justify-center p-4">
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-6 right-6 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-200"
+            >
+              <FiX className="w-6 h-6" />
+            </button>
+
+            {/* Navigation Buttons */}
+            {filteredPhotos.length > 1 && (
+              <>
+                <button
+                  onClick={prevPhoto}
+                  className="absolute left-6 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-200"
+                >
+                  <FiChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={nextPhoto}
+                  className="absolute right-6 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-200"
+                >
+                  <FiChevronRight className="w-6 h-6" />
+                </button>
+              </>
+            )}
+
+            {/* Photo Content */}
+            <div className="max-w-4xl w-full">
+              <div className="relative aspect-[4/3] mb-4">
+                <Image
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.alt}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              
+              {/* Photo Info */}
+              <div className="glass rounded-xl p-4 text-center">
+                <h2 className="text-xl font-550 text-navy-700 dark:text-white mb-2">
+                  {selectedPhoto.title}
+                </h2>
+                {selectedPhoto.description && (
+                  <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
+                    {selectedPhoto.description}
+                  </p>
+                )}
+                <div className="flex items-center justify-center text-sm text-gray-500 dark:text-gray-400">
+                  <FiCalendar className="w-4 h-4 mr-2" />
+                  {formatDate(selectedPhoto.date)}
+                </div>
+              </div>
+            </div>
+
+            {/* Photo Counter */}
+            {filteredPhotos.length > 1 && (
+              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 glass rounded-full px-3 py-1">
+                <span className="text-white text-sm">
+                  {currentIndex + 1} / {filteredPhotos.length}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
-}
-
-export default ImageGallery 
+} 

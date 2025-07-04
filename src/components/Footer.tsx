@@ -13,10 +13,10 @@ export default function Footer() {
   ]
 
   const quickLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Team', href: '#team' },
-    { label: 'Highlights', href: '#highlights' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Giới thiệu', href: '#about' },
+    { label: 'Đội ngũ', href: '#team' },
+    { label: 'Điểm nổi bật', href: '#highlights' },
+    { label: 'Liên hệ', href: '#contact' },
   ]
 
   return (
@@ -37,8 +37,8 @@ export default function Footer() {
               </div>
               
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed max-w-md">
-                Building a vibrant badminton community where passion meets excellence. 
-                Join us and discover the joy of playing beyond boundaries.
+                Xây dựng một cộng đồng cầu lông sôi động nơi đam mê gặp gỡ sự xuất sắc. 
+                Tham gia với chúng tôi và khám phá niềm vui chơi vượt giới hạn.
               </p>
 
               {/* Contact Info */}
@@ -53,14 +53,14 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
                   <FiMapPin className="w-5 h-5 text-navy-500" />
-                  <span>O Dien, Ha Noi</span>
+                  <span>Ô Diên, Hà Nội</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Links */}
             <div className="space-y-6">
-              <h3 className="text-lg font-550 text-navy-700 dark:text-white">Quick Links</h3>
+              <h3 className="text-lg font-550 text-navy-700 dark:text-white">Liên kết nhanh</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.href}>
@@ -77,7 +77,7 @@ export default function Footer() {
 
             {/* Connect */}
             <div className="space-y-6">
-              <h3 className="text-lg font-550 text-navy-700 dark:text-white">Connect With Us</h3>
+              <h3 className="text-lg font-550 text-navy-700 dark:text-white">Kết nối với chúng tôi</h3>
               
               {/* Social Links */}
               <div className="flex space-x-4">
@@ -96,16 +96,16 @@ export default function Footer() {
               {/* Newsletter Signup */}
               <div className="space-y-3">
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Stay updated with our latest news and events
+                  Cập nhật tin tức và sự kiện mới nhất của chúng tôi
                 </p>
                 <div className="flex space-x-2">
                   <input
                     type="email"
-                    placeholder="Your email"
+                    placeholder="Email của bạn"
                     className="flex-1 px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-navy-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus-ring"
                   />
                   <button className="px-4 py-2 bg-gradient-to-r from-navy-500 to-coral-500 text-white text-sm rounded-lg hover:scale-105 transition-transform duration-200 micro-bounce">
-                    Join
+                    Tham gia
                   </button>
                 </div>
               </div>
@@ -117,15 +117,15 @@ export default function Footer() {
         <div className="glass rounded-2xl px-6 py-4 mb-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-300">
-              <span>© {currentYear} Bernice Club. Made by VTea</span>
+              <span>© {currentYear} Bernice Club. Được tạo bởi VTea</span>
             </div>
             
             <div className="flex items-center space-x-6 text-sm">
               <Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-navy-600 dark:hover:text-white transition-colors duration-200">
-                Privacy Policy
+                Chính sách bảo mật
               </Link>
               <Link href="#" className="text-gray-600 dark:text-gray-300 hover:text-navy-600 dark:hover:text-white transition-colors duration-200">
-                Terms of Service
+                Điều khoản dịch vụ
               </Link>
             </div>
           </div>

@@ -26,48 +26,48 @@ export default function HomePage() {
   const teamMembers = [
     {
       name: 'Mr. Thịnh',
-      role: 'Club President',
+      role: 'Chủ tịch Câu lạc bộ',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&face',
-      bio: 'Founded the club in 2024 with a vision of creating an inclusive badminton community.'
+      bio: 'Thành lập câu lạc bộ vào năm 2024 với tầm nhìn tạo ra một cộng đồng cầu lông hòa nhập.'
     },
     {
       name: 'Mr. Rảnh',
-      role: 'Head Coach',
+      role: 'Huấn luyện viên trưởng',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&face',
-      bio: 'Former professional player with 30+ years of competitive experience.'
+      bio: 'Cựu vận động viên chuyên nghiệp với hơn 30 năm kinh nghiệm thi đấu.'
     },
     {
       name: 'Mr. Hẹn',
-      role: 'Events Coordinator',
+      role: 'Điều phối viên sự kiện',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&face',
-      bio: 'Organizes our tournaments and social events that bring the community together.'
+      bio: 'Tổ chức các giải đấu và sự kiện xã hội kết nối cộng đồng với nhau.'
     }
   ]
 
   const highlights = [
     {
       icon: FiAward,
-      title: 'Regional Champions 2024',
+      title: 'Vô địch khu vực 2024',
       description: 'Tự tạo ra giải đấu và tự vô địch',
       date: '10/2024'
     },
     {
       icon: FiUsers,
-      title: '20+ Active Members',
-      description: 'Growing community of passionate players',
-      date: 'Ongoing'
+      title: '20+ thành viên',
+      description: 'Cộng đồng đang phát triển với những người chơi đam mê',
+      date: 'Đang diễn ra'
     },
     {
       icon: FiAward,
-      title: 'Youth Program Launch',
-      description: 'Started coaching program for young players',
-      date: 'January 2024'
+      title: 'Phát triển vận động viên trẻ tuổi',
+      description: 'Khởi đầu hành trình đào tạo thế hệ kế thừa của CLB.',
+      date: 'Tháng 1 năm 2025'
     },
     {
       icon: FiCalendar,
-      title: 'Monthly Tournaments',
-      description: 'Regular competitive events for all skill levels',
-      date: 'Every Month'
+      title: 'Giải đấu hàng tháng',
+      description: 'Các sự kiện thi đấu thường xuyên cho mọi trình độ',
+      date: 'Hàng tháng'
     }
   ]
 
@@ -90,23 +90,22 @@ export default function HomePage() {
         }`}>
           <div className="space-y-8">
             <h1 className="text-6xl md:text-8xl font-750 bg-gradient-to-r from-navy-600 to-coral-500 bg-clip-text text-transparent leading-tight">
-              Play Beyond
+            Vượt giới hạn 
               <br />
-              <span className="font-450">Boundaries</span>
+              <span className="font-350">Kết nối đam mê</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Join our vibrant badminton community where passion meets excellence. 
-              Whether you&apos;re just starting or already a champion, we have your court ready.
+            Từ những bước đi đầu tiên đến từng pha cầu đỉnh cao - chúng tôi luôn đồng hành cùng bạn trên mọi chặng đường.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
               <button className="btn-primary text-lg px-8 py-4 flex items-center space-x-2 micro-bounce">
                 <FiPlay className="w-5 h-5" />
-                <span>Join Us Today</span>
+                <span>Tham gia ngay hôm nay</span>
               </button>
               <button className="btn-secondary text-lg px-8 py-4 flex items-center space-x-2">
-                <span>Learn More</span>
+                <span>Tìm hiểu thêm</span>
                 <FiArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -114,9 +113,9 @@ export default function HomePage() {
             {/* Stats Cards with Glassmorphism */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 max-w-4xl mx-auto">
               {[
-                { icon: FiUsers, number: '20+', label: 'Active Members' },
-                { icon: FiAward, number: '0+', label: 'Tournaments Won' },
-                { icon: FiHeart, number: '10+', label: 'Months of Excellence' }
+                { icon: FiUsers, number: '20+', label: 'Thành viên' },
+                { icon: FiAward, number: '2+', label: 'Giải đấu' },
+                { icon: FiHeart, number: '10+', label: 'Tháng Đầy Ấn Tượng'}
               ].map((stat, index) => (
                 <div key={index} className={`glass-card text-center micro-hover transition-all duration-500 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -136,7 +135,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 animate-slide-up">
             <h2 className="text-5xl font-650 text-navy-700 dark:text-white mb-6">
-              About Our Community
+              Về Cộng Đồng Chúng Tôi
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-navy-500 to-coral-500 mx-auto rounded-full"></div>
           </div>
@@ -145,21 +144,21 @@ export default function HomePage() {
             <div className="space-y-8 animate-slide-up">
               <div className="glass-card">
                 <FiTarget className="w-12 h-12 text-navy-500 mb-6" />
-                <h3 className="text-2xl font-550 text-navy-700 dark:text-white mb-4">Our Mission</h3>
+                <h3 className="text-2xl font-550 text-navy-700 dark:text-white mb-4">Sứ mệnh của chúng tôi</h3>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  To create an inclusive, supportive environment where badminton enthusiasts 
-                  of all skill levels can grow, connect, and achieve their potential both 
-                  on and off the court.
+                  Tạo ra một môi trường hòa nhập, hỗ trợ nơi những người đam mê cầu lông 
+                  ở mọi trình độ có thể phát triển, kết nối và đạt được tiềm năng của họ 
+                  cả trong và ngoài sân đấu.
                 </p>
               </div>
 
               <div className="glass-card">
                 <FiHeart className="w-12 h-12 text-coral-500 mb-6" />
-                <h3 className="text-2xl font-550 text-navy-700 dark:text-white mb-4">Our Values</h3>
+                <h3 className="text-2xl font-550 text-navy-700 dark:text-white mb-4">Giá trị của chúng tôi</h3>
                 <ul className="text-lg text-gray-600 dark:text-gray-300 space-y-2">
-                  <li className="flex items-center"><span className="w-2 h-2 bg-navy-500 rounded-full mr-3"></span>Inclusivity & Respect</li>
-                  <li className="flex items-center"><span className="w-2 h-2 bg-coral-500 rounded-full mr-3"></span>Excellence & Growth</li>
-                  <li className="flex items-center"><span className="w-2 h-2 bg-navy-500 rounded-full mr-3"></span>Community & Fun</li>
+                  <li className="flex items-center"><span className="w-2 h-2 bg-navy-500 rounded-full mr-3"></span>Hòa nhập & Tôn trọng</li>
+                  <li className="flex items-center"><span className="w-2 h-2 bg-coral-500 rounded-full mr-3"></span>Xuất sắc & Phát triển</li>
+                  <li className="flex items-center"><span className="w-2 h-2 bg-navy-500 rounded-full mr-3"></span>Cộng đồng & Vui vẻ</li>
                 </ul>
               </div>
             </div>
@@ -168,18 +167,18 @@ export default function HomePage() {
               <div className="glass-card p-0 overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1544547863-c9618ba8e31b?w=600&h=400&fit=crop"
-                  alt="Badminton players in action"
+                  alt="Các vận động viên cầu lông đang thi đấu"
                   width={600}
                   height={400}
                   className="w-full h-80 object-cover"
                 />
                 <div className="p-8">
                   <h3 className="text-2xl font-550 text-navy-700 dark:text-white mb-4">
-                    10 Months of Excellence
+                  10 Tháng Đầy Ấn Tượng
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    From humble beginnings with 8 founding members to a thriving 
-                    community of 20+ passionate players, we&apos;ve built something special together.
+                    Từ những khởi đầu khiêm tốn với 8 thành viên sáng lập đến một 
+                    cộng đồng thịnh vượng với 20+ người chơi đam mê, chúng tôi đã xây dựng nên điều gì đó đặc biệt.
                   </p>
                 </div>
               </div>
@@ -193,10 +192,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 animate-slide-up">
             <h2 className="text-5xl font-650 text-navy-700 dark:text-white mb-6">
-              Meet Our Team
+              Gặp Gỡ Đội Ngũ
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              The passionate individuals who make our community thrive
+              Những cá nhân đam mê làm cho cộng đồng chúng ta phát triển mạnh mẽ
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-navy-500 to-coral-500 mx-auto rounded-full mt-6"></div>
           </div>
@@ -227,7 +226,7 @@ export default function HomePage() {
 
           <div className="text-center mt-16 animate-slide-up">
             <button className="btn-secondary text-lg px-8 py-4">
-              Join Our Team
+              Tham gia đội ngũ
             </button>
           </div>
         </div>
@@ -238,10 +237,12 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 animate-slide-up">
             <h2 className="text-5xl font-650 text-navy-700 dark:text-white mb-6">
-              Our Highlights
+              Điểm Nổi Bật
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Celebrating our journey of achievements and memorable moments
+            Chúng tôi không chỉ chơi - chúng tôi ghi lại những dấu ấn. 
+            <br />
+            Đây là hành trình, là câu chuyện, là tinh thần của CLB.
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-navy-500 to-coral-500 mx-auto rounded-full mt-6"></div>
           </div>
@@ -272,10 +273,12 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20 animate-slide-up">
             <h2 className="text-5xl font-650 text-navy-700 dark:text-white mb-6">
-              Get In Touch
+              Liên Hệ
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Ready to join our badminton family? We&apos;d love to hear from you!
+            Sẵn sàng nhập cuộc?
+            <br />
+            Hãy kết nối với chúng tôi ngay hôm nay!
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-navy-500 to-coral-500 mx-auto rounded-full mt-6"></div>
           </div>
@@ -285,9 +288,9 @@ export default function HomePage() {
             <div className="space-y-6 animate-slide-up">
               {[
                 { icon: FiMail, title: 'Email', info: 'info@badmintonclub.com' },
-                { icon: FiPhone, title: 'Phone', info: '+1 (555) 123-4567' },
-                { icon: FiMapPin, title: 'Location', info: '123 Sports Center Ave' },
-                { icon: FiClock, title: 'Hours', info: 'Mon-Fri: 6PM-10PM' }
+                { icon: FiPhone, title: 'Điện thoại', info: '+84 339 567 ***' },
+                { icon: FiMapPin, title: 'Địa điểm', info: 'Ô Diên, Hà Nội' },
+                { icon: FiClock, title: 'Giờ mở cửa', info: 'Thứ 2-6: 6 giờ chiều - 10 giờ tối' }
               ].map((contact, index) => (
                 <div key={index} className="glass-card flex items-center space-x-4 micro-hover">
                   <div className="w-12 h-12 bg-gradient-to-br from-navy-500 to-coral-500 rounded-xl flex items-center justify-center">
@@ -303,32 +306,32 @@ export default function HomePage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2 glass-card animate-slide-up" style={{ animationDelay: '200ms' }}>
-              <h3 className="text-2xl font-550 text-navy-700 dark:text-white mb-8">Send us a message</h3>
+              <h3 className="text-2xl font-550 text-navy-700 dark:text-white mb-8">Gửi tin nhắn cho chúng tôi</h3>
               <form className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <input
                     type="text"
-                    placeholder="Your Name"
+                    placeholder="Tên của bạn"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-navy-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus-ring transition-all duration-200"
                   />
                   <input
                     type="email"
-                    placeholder="Your Email"
+                    placeholder="Email của bạn"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-navy-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus-ring transition-all duration-200"
                   />
                 </div>
                 <input
                   type="text"
-                  placeholder="Subject"
+                  placeholder="Chủ đề"
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-navy-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus-ring transition-all duration-200"
                 />
                 <textarea
                   rows={6}
-                  placeholder="Your Message"
+                  placeholder="Tin nhắn của bạn"
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 bg-white/50 dark:bg-gray-800/50 text-navy-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus-ring transition-all duration-200 resize-none"
                 ></textarea>
                 <button type="submit" className="btn-primary w-full text-lg py-4 micro-bounce">
-                  Send Message
+                  Gửi tin nhắn
                 </button>
               </form>
             </div>
