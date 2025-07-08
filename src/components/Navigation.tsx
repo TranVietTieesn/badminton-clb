@@ -42,6 +42,7 @@ export default function Navigation() {
     { href: '/#about', label: 'Giới thiệu', isSection: true },
     { href: '/#team', label: 'Đội ngũ', isSection: true },
     { href: '/album', label: 'Album', isSection: false },
+    { href: '/matches', label: 'Trận đấu', isSection: false },
     { href: '/#highlights', label: 'Điểm nổi bật', isSection: true },
     { href: '/#contact', label: 'Liên hệ', isSection: true },
   ]
@@ -201,6 +202,7 @@ export default function Navigation() {
                     {item.label}
                   </Link>
                 ))}
+
                 <button className="btn-primary w-full mt-4">
                   Tham gia CLB
                 </button>

@@ -29,15 +29,39 @@ A state-of-the-art badminton club website featuring cutting-edge web design tren
 - **Touch Friendly**: Optimized for mobile devices and touch interactions
 - **Performance First**: Lazy loading and optimized rendering
 
+### 🔐 Admin System
+- **Secure Login**: Hardcoded admin credentials with session management
+- **Video Management**: Submit and manage YouTube videos with categories
+- **Cloud Storage**: Vercel Blob storage for persistent data
+- **Protected Routes**: Middleware protection for admin pages
+
 ## 🛠️ Technology Stack
 
 - **Framework**: Next.js 14 with TypeScript
 - **Styling**: Tailwind CSS with custom animations
 - **Icons**: Feather Icons (react-icons/fi)
+- **Authentication**: Cookie-based sessions with js-cookie
+- **Storage**: Vercel Blob for video data persistence
 - **Fonts**: Inter Variable from Google Fonts
 - **Deployment**: Vercel-ready configuration
 
 ## 🚀 Getting Started
+
+### Environment Setup
+
+No environment setup required! The admin system uses browser localStorage for simplicity.
+
+For production with Vercel Blob (optional), create a `.env.local` file:
+
+```bash
+# Vercel Blob Storage Configuration (optional)
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_xxxxx
+
+# Next.js Configuration (optional)
+NEXT_PUBLIC_SITE_URL=http://localhost:3002
+```
+
+### Installation
 
 ```bash
 # Install dependencies
@@ -55,14 +79,37 @@ npm start
 
 Open [http://localhost:3002](http://localhost:3002) to view the website.
 
+## 🔐 Admin Access
+
+### Login Credentials
+- **Username**: `admin`
+- **Password**: `123456`
+
+### Admin Features
+1. **Login Page**: `/login` - Secure authentication with session management
+2. **Admin Dashboard**: `/admin` - View, search, filter, and delete videos
+3. **Video Submission**: `/submit-video` - Add new YouTube videos with metadata
+4. **Protected Routes**: Middleware automatically protects admin areas
+
+### Video Management
+- Submit YouTube videos with title, description, category, and date
+- Categories: Tournament, Friendly, Training, Highlights
+- Additional metadata: Teams, Results, Duration
+- Real-time YouTube preview in submission form
+- Video gallery with embedded players in admin dashboard
+- Search and filter functionality
+
 ## 📱 Page Structure
 
-### Home (Single Page Application)
-- **Hero Section**: Full-width parallax with 2-3 clear CTAs
-- **About Section**: Glassmorphic panels for mission and values
-- **Team Section**: 3-column grid with hover-activated details
-- **Highlights Section**: Achievement timeline with animated icons
-- **Contact Section**: Minimal form with contextual input hints
+### Public Pages
+- **Home (SPA)**: Hero → About → Team → Highlights → Contact
+- **Album**: Photo gallery with category filtering
+- **Matches**: YouTube video gallery from user submissions
+
+### Admin Pages (Protected)
+- **Login**: `/login` - Authentication form
+- **Admin Dashboard**: `/admin` - Video management interface
+- **Submit Video**: `/submit-video` - Video submission form
 
 ## 🎨 Design System
 
@@ -100,6 +147,8 @@ Open [http://localhost:3002](http://localhost:3002) to view the website.
 5. **Performance**: Optimized for Core Web Vitals
 6. **Responsive**: Mobile-first design approach
 7. **SEO Ready**: Proper meta tags and semantic HTML
+8. **Admin System**: Complete video management with authentication
+9. **Cloud Storage**: Vercel Blob integration for data persistence
 
 ## 📊 Performance Optimizations
 
@@ -116,5 +165,23 @@ Open [http://localhost:3002](http://localhost:3002) to view the website.
 - **Micro Bounce**: Button press feedback
 - **Glow Effects**: Hover states for interactive elements
 - **Float Animation**: Gentle movement for background elements
+
+## 🔧 Development Notes
+
+### Authentication
+- Uses cookie-based sessions with 7-day expiration
+- Hardcoded credentials (can be easily modified in `/src/lib/auth.ts`)
+- Middleware protection for all `/admin/*` and `/submit-video/*` routes
+
+### Data Storage
+- Video metadata stored in browser localStorage (simple & fast)
+- Automatic backup/restore functionality via JSON export/import
+- Support for video categorization and metadata fields
+- Easy migration to Vercel Blob or database later
+
+### Security
+- Client-side route protection with middleware
+- Token validation with expiration checking
+- Secure cookie configuration for production deployment
 
 ---

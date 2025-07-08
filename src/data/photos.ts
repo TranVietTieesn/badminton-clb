@@ -78,7 +78,7 @@ export const clubPhotos: Photo[] = [
   // Tournament Photos
   {
     id: 'tourn_001',
-    src: 'images/tournament/476429567_1877628312767537_4942515097612906741_n.jpg',
+    src: '/images//tournament//476429567_1877628312767537_4942515097612906741_n.jpg',
     alt: 'Giải đấu nội bộ CLB',
     title: 'Giải đấu tháng 11',
     date: '2024-11-20',
